@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Home | My Note</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6em;
+        background: #f4f4f4;
+      }
+
+      header,
+      footer {
+        text-align: center;
+      }
+
+      #container {
+        width: 400px;
+        margin: 50px auto;
+        background: #ffffa5;
+        overflow: hidden;
+        padding: 30px;
+      }
+
+      .clear {
+        text-decoration: none;
+        background: #333;
+        color: #fff;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>My Note</h1>
+    </header>
+
+    <section id="container">
+      <div id="note" contenteditable="true" onkeyup="saveNote(this.id)"></div>
+    </section>
+
+    <footer>
+      <div>
+        <a href="" class="clear" onclick="javascript:clearNote()">Clear Note</a>
+      </div>
+      <p>&copy; 2019. JuniusAlfonsus</p>
+    </footer>
+
+    <script>
+      function getNote() {
+        let note;
+        if (localStorage.getItem('note')) {
+          note = localStorage.getItem('note');
+        } else {
+          note = 'Go ahead and edit this note to save in local storage';
+        }
+
+        document.getElementById('note').innerHTML = note;
+      }
+
+      function saveNote(id) {
+        let note = document.getElementById('note').innerHTML;
+        localStorage.setItem('note', note);
+      }
+
+      function clearNote() {
+        clear: localStorage.clear();
+        return false;
+      }
+
+      getNote();
+    </script>
+  </body>
+</html>
